@@ -14,7 +14,7 @@ let cpu;
 let userNum;
 let scoreUser = 0;
 let scoreCpu = 0;
-let counter = 0;
+let counter = 1;
 let isClickable = false;
 
 
@@ -44,83 +44,96 @@ const scissorsIcon = `<div class="choice">
     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAATySURBVGhD7ZlprF9DGIevLWIJaoul9ogiog0iYg9iadQHS4JaW1uINqpI7QlfJITYI4hUIpEoidpCQkiIFkWJtWlQGjsVey3Pc+6dmnvunHvmnP8/+uX8kif3P3PmvGdmzjvvvHPuQKdOnTp16tSp0/+m1WEfuBRuHfo7FvqiVWEXOBk0fBGcCJtBr7Lje4N2n4Kf4J8S1h0ErbQhnAQPwldQNi5/w3NgR3K1GuwFM+EJWAZlm2/DLXAOPATWvwFZWgUmwBXwMiyH+AEfgIO6EW6AOfADeM22Z0NKdnwPmAGPw48Q27Xj74BudCxsDLG838H6jLWsqNLBcB8shfgBP4MzdgHsAClp+Br4C+zQEaAb7g7T4DH4HmK78i7cDsfDplCnL8H7yoMstB74oPgBH4MzcxSsDbmaDt7/LXwz9DvGt3k3uK42hyY6D7Rh30bI1/U82MCHz4Jx0Fa+hcUQOv4R3AMGhy2gqfSAi+E1CDZPgBG6ELz4HexoRR/k2tHmVUWpmVyfe8J1sBBC5+VzOA6S+gxspI/2S8EF7ihK9VoDDoXb4FOIO/813A9Hg+0qZWMHo4v1S0eCdp8sSmmtC86u0U9viDuva94M7hfZ/fJGR9xUG8A6gz9HaCfQ7ntF6T8ZlaaCofdXiDu/AIx646GVNHLt4M8sOYDr4Reo2pjWBEPwb6DPHwIvgaE5dNy9wCBjlNsOepZGLxv8WatTQZ8NnZFtIKWw9raER4Z+x/wOLuaHwYVtOHazrHrLtdJo7kDCRvksGFb9fQak5Bvw+n6gS00Bs4C54D5QzhYCvslP4BlwnZwLrpXaXM6bcwfijB0AkyE8eDakZL3XbZuS7ueub7Q0TJtH6aq6bLBdxqDwChjddNdhskHuQNRhoFsE48b2lFx3Xr+yKOXLDXVbMMUxszYLeBFSyarZyIqcy4qcgZhia/gP8J6rIayDnaGs08FrbSJilTYCXfVyCDnXTVCobiDmWafBm2DbP8EkUD0A1p1flIZLF/TaF+CCrsJ9RHvuK01k6uJ68nziW6wciGnCCxC7kYNxRoKMYtYblcraGsJ9OZhMNs3FHISDKdxLI6mBBB938ZnCuyjdE2J57LSNyWYxK5Ese83oZPpRhWHXBWxbN1AzbteVrmmGsBuk0vuQPbxflJCF1ECMKvtCXQrvTGrDIBDL/cV6Q3adxkDqWBujZ5iHedB7FXRx683rClnIWexVCtmzR1IXo1ofzLOsN4XPkXuL7T1G6A33gnuO7uxk6EJeDzgwN9IVuZiVvQzEN/chaMdj6DwIR1hDszt7nSaBHU0emIZk5qstvwnoKU7WMPU6ELUVPA3aitHtzAJGYz6EHOwUaC0NNN20qnQXxAPJxWBxFvQkDd05+LMn7Q/a8kPFJZCKUIFjwLdh+7egL2chjY3mm7ky/9GWZ4ocmeX6Jryn6UeIpMw0NTaxKLWX0Uk7bpK5ct/wnu2LUo/SNzW2CDaxoqX8SqIdY/yIiJKQx9y6SNVIJoOmInbC0Nnmk40yPLqXaMfw+zr4CSeF0SzsC05A3+Sb8Iufhv2o5mJtMyDtPArlzSuFzzkT+i7dwWw0PMjOLAEPO6lZTeEbcReOz+baMUIdDh7MxO9n5dys7zoQPK2Fj9Jt8AuJOZERbFdYqTLT9ZzscTTMZB3+38QEsFOnTp06jaKBgX8BYNbZ+2P3L60AAAAASUVORK5CYII=" />
 </div>`
 
+
+
+
+
 rock.onclick = (e) => {
-    userNum = 1
-    startGame(userNum)
-    userChoice.innerHTML = rockIcon
-    counter++;
+    if (!isClickable) {
+        userNum = 1
+        startGame(userNum)
+        userChoice.innerHTML = rockIcon
+        counter++;
+    }
 }
 
 paper.onclick = (e) => {
-    userNum = 2
-    startGame(userNum)
-    userChoice.innerHTML = paperIcon
-    counter++;
+    if (!isClickable) {
+        userNum = 2
+        startGame(userNum)
+        userChoice.innerHTML = paperIcon
+        counter++;
+    }
 }
 
 scissors.onclick = (e) => {
-    userNum = 3
-    startGame(userNum)
-    userChoice.innerHTML = scissorsIcon
-    counter++;
+    if (!isClickable) {
+        userNum = 3
+        startGame(userNum)
+        userChoice.innerHTML = scissorsIcon
+        counter++;
+    }
 }
 
+
+
 function startGame(userNum) {
-    if (!isClickable) {
-        isClickable = true
-        audio.play();
-        result.innerText = startMessage
-        cpu = getRandomNumber(1, 3);
+
+    isClickable = true
+    audio.play();
+    result.innerText = startMessage
+    cpu = getRandomNumber(1, 3);
 
 
-        switch (cpu) {
-            case 1:
-                cpuChoice.innerHTML = rockIcon;
-                break;
+    switch (cpu) {
+        case 1:
+            cpuChoice.innerHTML = rockIcon;
+            break;
 
-            case 2:
-                cpuChoice.innerHTML = paperIcon;
-                break;
-            default:
-                cpuChoice.innerHTML = scissorsIcon;
-                break;
-        }
-
-        switch (userNum) {
-            case 1:
-                userChoice.innerHTML = rockIcon;
-                break;
-
-            case 2:
-                userChoice.innerHTML = paperIcon;
-                break;
-            default:
-                userChoice.innerHTML = scissorsIcon;
-                break;
-        }
-        rockPaperScissors(userNum)
-        setTimeout(() => {
-            isClickable = false
-        }, 1500);
+        case 2:
+            cpuChoice.innerHTML = paperIcon;
+            break;
+        default:
+            cpuChoice.innerHTML = scissorsIcon;
+            break;
     }
+
+    switch (userNum) {
+        case 1:
+            userChoice.innerHTML = rockIcon;
+            break;
+
+        case 2:
+            userChoice.innerHTML = paperIcon;
+            break;
+        default:
+            userChoice.innerHTML = scissorsIcon;
+            break;
+    }
+
     rockPaperScissors(userNum)
+
     console.log(cpuChoice.innerHTML)
     console.log(userChoice.innerHTML)
 
-    if (counter > 0) {
+    /* if (counter > 0) { */
 
-        const node = document.createElement("li");
-        storic.appendChild(node)
-        node.innerHTML = `
+    const node = document.createElement("li");
+    storic.appendChild(node)
+    node.innerHTML = `
         <span>Round: ${counter}</span> 
         <div class="d-flex align-items-center bruno">
-            ${userChoice.innerHTML}
-            <h5> ${result.innerText} </h5>
-            ${cpuChoice.innerHTML}
+        ${userChoice.innerHTML}
+        <h5> ${result.innerText} </h5>
+        ${cpuChoice.innerHTML}
         </div>
         `
-    }
+    setTimeout(() => {
+        isClickable = false
+    }, 1500);
 }
+/* } */
+
 
 
 function rockPaperScissors(userNum) {
