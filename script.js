@@ -116,13 +116,13 @@ function startGame(userNum) {
     console.log(cpuChoice.innerHTML)
     console.log(userChoice.innerHTML)
 
-    /* if (counter > 0) { */
+    if (counter < 2) storic.innerHTML = "";
 
     const node = document.createElement("li");
     storic.appendChild(node)
     node.innerHTML = `
         <span>Round: ${counter}</span> 
-        <div class="d-flex align-items-center bruno">
+        <div class="d-flex align-items-center bruno justify-content-evenly">
         ${userChoice.innerHTML}
         <h5> ${result.innerText} </h5>
         ${cpuChoice.innerHTML}
@@ -132,7 +132,6 @@ function startGame(userNum) {
         isClickable = false
     }, 1500);
 }
-/* } */
 
 
 
