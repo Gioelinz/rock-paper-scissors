@@ -9,11 +9,14 @@ const result = document.querySelector('.result');
 const startMessage = 'Inserite qua il risultato'
 const userChoice = document.getElementById('user-choice')
 const cpuChoice = document.getElementById('cpu-choice')
+const storic = document.getElementById('storico-risultati')
 let cpu;
 let userNum;
 let scoreUser = 0;
 let scoreCpu = 0;
+let counter = 0;
 let isClickable = false;
+
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * max - min + 1) + min
@@ -44,16 +47,22 @@ const scissorsIcon = `<div class="choice">
 rock.onclick = (e) => {
     userNum = 1
     startGame(userNum)
+    userChoice.innerHTML = rockIcon
+    counter++;
 }
 
 paper.onclick = (e) => {
     userNum = 2
     startGame(userNum)
+    userChoice.innerHTML = paperIcon
+    counter++;
 }
 
 scissors.onclick = (e) => {
     userNum = 3
     startGame(userNum)
+    userChoice.innerHTML = scissorsIcon
+    counter++;
 }
 
 function startGame(userNum) {
@@ -93,6 +102,23 @@ function startGame(userNum) {
         setTimeout(() => {
             isClickable = false
         }, 1500);
+    }
+    rockPaperScissors(userNum)
+    console.log(cpuChoice.innerHTML)
+    console.log(userChoice.innerHTML)
+
+    if (counter > 0) {
+
+        const node = document.createElement("li");
+        storic.appendChild(node)
+        node.innerHTML = `
+        <span>Round: ${counter}</span> 
+        <div class="d-flex align-items-center bruno">
+            ${userChoice.innerHTML}
+            <h5> ${result.innerText} </h5>
+            ${cpuChoice.innerHTML}
+        </div>
+        `
     }
 }
 
@@ -141,13 +167,3 @@ function rockPaperScissors(userNum) {
     userScore.innerText = scoreUser;
     computerScore.innerText = scoreCpu;
 }
-
-
-
-
-
-
-
-
-
-
