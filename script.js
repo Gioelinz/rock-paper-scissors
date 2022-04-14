@@ -15,6 +15,8 @@ let userNum;
 let scoreUser = 0;
 let scoreCpu = 0;
 let counter = 0;
+let isClickable = false;
+
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * max - min + 1) + min
@@ -25,6 +27,7 @@ function getRandomNumber(min, max) {
 
 
 result.innerText = startMessage
+const audio = new Audio('sounds/clicksound.wav');
 
 const rockIcon = `<div class="choice">
 <img
@@ -63,19 +66,42 @@ scissors.onclick = (e) => {
 }
 
 function startGame(userNum) {
-    result.innerText = startMessage
-    cpu = getRandomNumber(1, 3);
-    switch (cpu) {
-        case 1:
-            cpuChoice.innerHTML = rockIcon;
-            break;
+    if (!isClickable) {
+        isClickable = true
+        audio.play();
+        result.innerText = startMessage
+        cpu = getRandomNumber(1, 3);
 
-        case 2:
-            cpuChoice.innerHTML = paperIcon;
-            break;
-        default:
-            cpuChoice.innerHTML = scissorsIcon;
-            break;
+
+        switch (cpu) {
+            case 1:
+                cpuChoice.innerHTML = rockIcon;
+                break;
+
+            case 2:
+                cpuChoice.innerHTML = paperIcon;
+                break;
+            default:
+                cpuChoice.innerHTML = scissorsIcon;
+                break;
+        }
+
+        switch (userNum) {
+            case 1:
+                userChoice.innerHTML = rockIcon;
+                break;
+
+            case 2:
+                userChoice.innerHTML = paperIcon;
+                break;
+            default:
+                userChoice.innerHTML = scissorsIcon;
+                break;
+        }
+        rockPaperScissors(userNum)
+        setTimeout(() => {
+            isClickable = false
+        }, 1500);
     }
     rockPaperScissors(userNum)
     console.log(cpuChoice.innerHTML)
@@ -94,9 +120,6 @@ function startGame(userNum) {
         </div>
         `
     }
-
-
-
 }
 
 
