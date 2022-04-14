@@ -23,6 +23,7 @@ function getRandomNumber(min, max) {
 
 
 result.innerText = startMessage
+const audio = new Audio('sounds/clicksound.wav');
 
 const rockIcon = `<div class="choice">
 <img
@@ -58,6 +59,7 @@ scissors.onclick = (e) => {
 }
 
 function startGame(userNum) {
+    audio.play();
     result.innerText = startMessage
     cpu = getRandomNumber(1, 3);
     switch (cpu) {
@@ -77,41 +79,41 @@ function startGame(userNum) {
 
 
 function rockPaperScissors(userNum) {
-/* Se utente e Cpu mettono lo stesso segno */
+    /* Se utente e Cpu mettono lo stesso segno */
     if (userNum == cpu) {
         scoreUser++
         scoreCpu++
         result.innerText = 'Pareggio';
     }
 
-/* utente mette sasso e cpu mette carta */
+    /* utente mette sasso e cpu mette carta */
     if (userNum == 1 && cpu == 2) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
 
-/* utente mette sasso e cpu mette carta */
+    /* utente mette sasso e cpu mette carta */
     if (userNum == 1 && cpu == 3) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
 
-/* utente mette sasso e cpu mette carta */    
+    /* utente mette sasso e cpu mette carta */
     if (userNum == 2 && cpu == 1) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
-/* utente mette carta e cpu mette forbice */
+    /* utente mette carta e cpu mette forbice */
     if (userNum == 2 && cpu == 3) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
-/* utente mette forbice e cpu mette sasso */
+    /* utente mette forbice e cpu mette sasso */
     if (userNum == 3 && cpu == 1) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
-/* utente mette forbice e cpu mette carta */
+    /* utente mette forbice e cpu mette carta */
     if (userNum == 3 && cpu == 2) {
         scoreUser++
         result.innerText = 'Vittoria'
