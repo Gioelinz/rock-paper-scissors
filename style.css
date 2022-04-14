@@ -23,6 +23,7 @@ nav {
 ul {
     list-style: none;
     padding: 0;
+    position: relative;
 }
 
 li {
@@ -145,9 +146,25 @@ li {
     }
 }
 
+
+/* +table */
+
 #storico-risultati {
     height: 410px;
     overflow-y: auto;
+}
+
+.storic {
+    padding: 15px 10px;
+    border: #9b2226 1px solid;
+    text-align: center;
+}
+
+.title-results {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .bruno .choice img {
