@@ -46,38 +46,46 @@ function startGame(userNum) {
 
 
 function rockPaperScissors(userNum) {
-
+/* Se utente e Cpu mettono lo stesso segno */
     if (userNum == cpu) {
         scoreUser++
         scoreCpu++
         result.innerText = 'Pareggio';
-
     }
+
+/* utente mette sasso e cpu mette carta */
     if (userNum == 1 && cpu == 2) {
         scoreCpu++
         result.innerText = 'Sconfitta'
-
     }
+
+/* utente mette sasso e cpu mette carta */
     if (userNum == 1 && cpu == 3) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
+
+/* utente mette sasso e cpu mette carta */    
     if (userNum == 2 && cpu == 1) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
+/* utente mette carta e cpu mette forbice */
     if (userNum == 2 && cpu == 3) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
+/* utente mette forbice e cpu mette sasso */
     if (userNum == 3 && cpu == 1) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
+/* utente mette forbice e cpu mette carta */
     if (userNum == 3 && cpu == 2) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
+
     userScore.innerText = scoreUser;
     computerScore.innerText = scoreCpu;
 }
