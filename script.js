@@ -13,6 +13,7 @@ let cpu;
 let userNum;
 let scoreUser = 0;
 let scoreCpu = 0;
+let isClickable = false;
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * max - min + 1) + min
@@ -43,38 +44,56 @@ const scissorsIcon = `<div class="choice">
 rock.onclick = (e) => {
     userNum = 1
     startGame(userNum)
-    userChoice.innerHTML = rockIcon
 }
 
 paper.onclick = (e) => {
     userNum = 2
     startGame(userNum)
-    userChoice.innerHTML = paperIcon
 }
 
 scissors.onclick = (e) => {
     userNum = 3
     startGame(userNum)
-    userChoice.innerHTML = scissorsIcon
 }
 
 function startGame(userNum) {
-    audio.play();
-    result.innerText = startMessage
-    cpu = getRandomNumber(1, 3);
-    switch (cpu) {
-        case 1:
-            cpuChoice.innerHTML = rockIcon;
-            break;
+    if (!isClickable) {
+        isClickable = true
+        audio.play();
+        result.innerText = startMessage
+        cpu = getRandomNumber(1, 3);
 
-        case 2:
-            cpuChoice.innerHTML = paperIcon;
-            break;
-        default:
-            cpuChoice.innerHTML = scissorsIcon;
-            break;
+
+        switch (cpu) {
+            case 1:
+                cpuChoice.innerHTML = rockIcon;
+                break;
+
+            case 2:
+                cpuChoice.innerHTML = paperIcon;
+                break;
+            default:
+                cpuChoice.innerHTML = scissorsIcon;
+                break;
+        }
+
+        switch (userNum) {
+            case 1:
+                userChoice.innerHTML = rockIcon;
+                break;
+
+            case 2:
+                userChoice.innerHTML = paperIcon;
+                break;
+            default:
+                userChoice.innerHTML = scissorsIcon;
+                break;
+        }
+        rockPaperScissors(userNum)
+        setTimeout(() => {
+            isClickable = false
+        }, 1500);
     }
-    rockPaperScissors(userNum)
 }
 
 
