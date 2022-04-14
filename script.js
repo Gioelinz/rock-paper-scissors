@@ -9,10 +9,12 @@ const result = document.querySelector('.result');
 const startMessage = 'Inserite qua il risultato'
 const userChoice = document.getElementById('user-choice')
 const cpuChoice = document.getElementById('cpu-choice')
+const storic = document.getElementById('storico-risultati')
 let cpu;
 let userNum;
 let scoreUser = 0;
 let scoreCpu = 0;
+let counter = 0;
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * max - min + 1) + min
@@ -43,18 +45,21 @@ rock.onclick = (e) => {
     userNum = 1
     startGame(userNum)
     userChoice.innerHTML = rockIcon
+    counter++;
 }
 
 paper.onclick = (e) => {
     userNum = 2
     startGame(userNum)
     userChoice.innerHTML = paperIcon
+    counter++;
 }
 
 scissors.onclick = (e) => {
     userNum = 3
     startGame(userNum)
     userChoice.innerHTML = scissorsIcon
+    counter++;
 }
 
 function startGame(userNum) {
@@ -73,45 +78,64 @@ function startGame(userNum) {
             break;
     }
     rockPaperScissors(userNum)
+    console.log(cpuChoice.innerHTML)
+    console.log(userChoice.innerHTML)
+
+    if (counter > 0) {
+
+        const node = document.createElement("li");
+        storic.appendChild(node)
+        node.innerHTML = `
+        <span>Round: ${counter}</span> 
+        <div class="d-flex align-items-center bruno">
+            ${userChoice.innerHTML}
+            <h5> ${result.innerText} </h5>
+            ${cpuChoice.innerHTML}
+        </div>
+        `
+    }
+
+
+
 }
 
 
 function rockPaperScissors(userNum) {
-/* Se utente e Cpu mettono lo stesso segno */
+    /* Se utente e Cpu mettono lo stesso segno */
     if (userNum == cpu) {
         scoreUser++
         scoreCpu++
         result.innerText = 'Pareggio';
     }
 
-/* utente mette sasso e cpu mette carta */
+    /* utente mette sasso e cpu mette carta */
     if (userNum == 1 && cpu == 2) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
 
-/* utente mette sasso e cpu mette carta */
+    /* utente mette sasso e cpu mette carta */
     if (userNum == 1 && cpu == 3) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
 
-/* utente mette sasso e cpu mette carta */    
+    /* utente mette sasso e cpu mette carta */
     if (userNum == 2 && cpu == 1) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
-/* utente mette carta e cpu mette forbice */
+    /* utente mette carta e cpu mette forbice */
     if (userNum == 2 && cpu == 3) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
-/* utente mette forbice e cpu mette sasso */
+    /* utente mette forbice e cpu mette sasso */
     if (userNum == 3 && cpu == 1) {
         scoreCpu++
         result.innerText = 'Sconfitta'
     }
-/* utente mette forbice e cpu mette carta */
+    /* utente mette forbice e cpu mette carta */
     if (userNum == 3 && cpu == 2) {
         scoreUser++
         result.innerText = 'Vittoria'
@@ -120,13 +144,3 @@ function rockPaperScissors(userNum) {
     userScore.innerText = scoreUser;
     computerScore.innerText = scoreCpu;
 }
-
-
-
-
-
-
-
-
-
-
