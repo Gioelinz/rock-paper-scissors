@@ -83,6 +83,7 @@ reset.onclick = (e) => {
     userScore.innerText = scoreUser;
     computerScore.innerText = scoreCpu;
     storic.innerHTML = titleResults
+    result.innerText = 'Rigioca!'
 }
 
 
