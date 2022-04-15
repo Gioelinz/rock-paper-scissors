@@ -160,13 +160,13 @@ function rockPaperScissors(userNum) {
         result.innerText = 'Sconfitta'
     }
 
-    /* utente mette sasso e cpu mette carta */
+    /* utente mette sasso e cpu mette forbice */
     if (userNum == 1 && cpu == 3) {
         scoreUser++
         result.innerText = 'Vittoria'
     }
 
-    /* utente mette sasso e cpu mette carta */
+    /* utente mette carta e cpu mette sasso */
     if (userNum == 2 && cpu == 1) {
         scoreUser++
         result.innerText = 'Vittoria'
